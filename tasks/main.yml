@@ -1,2 +1,17 @@
 ---
 # tasks file for sendmail-smarthost
+ - name: Include OS-specific variables.
+   include_vars: "{{ ansible_os_family }}.yml"
+
+ - name: update root email forwarding
+   lineinfile: "dest={{ aliases_file }} state=present regexp='^root:' line='root: {{ admin_email }}' insertafter='^# root:'"
+   notify: newalises
+
+ - name: make sendmail config files
+   command: make chdir={{ mail_path }} creates={{ mail_path }}{{ ansible_hostname }}.mc
+
+ - name: configure smarthost
+   replace: dest={{ mail_path }}{{ ansible_hostname }}.mc regexp="dnl define.*SMART_HOST.*"  replace="define(`SMART_HOST', `{{ smarthost }}')"
+   notify: make install sendmail config files
+   notify: restart sendmail
+

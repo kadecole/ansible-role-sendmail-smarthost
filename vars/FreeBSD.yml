@@ -1,0 +1,3 @@
+---
+aliases_file: /etc/mail/aliases
+mail_path: /etc/mail/

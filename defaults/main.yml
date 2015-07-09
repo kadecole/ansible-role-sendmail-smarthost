@@ -1,2 +1,4 @@
 ---
 # defaults file for sendmail-smarthost
+smarthost: smtp.example.com
+admin_email: me@example.com
