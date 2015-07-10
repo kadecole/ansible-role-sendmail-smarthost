@@ -10,10 +10,10 @@ None
 
 Role Variables
 --------------
-
+```
 smarthost:  smtp.example.com
-
 admin_email: email@example.com
+```
 
 Dependencies
 ------------
