@@ -1,13 +1,13 @@
 ---
 # handlers file for sendmail-smarthost
-    - name: newalises
-      shell: newaliases
+ - name: newaliases
+   shell: newaliases
  
-    - name: make install sendmail config files
-      command: make install chdir={{ mail_path }}
-      when: ansible_os_family == 'FreeBSD'
+ - name: make install sendmail config files
+   command: make install chdir={{ mail_path }}
+   when: ansible_os_family == 'FreeBSD'
 
-    - name: restart sendmail
-      shell: service sendmail onerestart
-      when: ansible_os_family == 'FreeBSD'
+ - name: restart sendmail
+   shell: service sendmail onerestart
+   when: ansible_os_family == 'FreeBSD'
       

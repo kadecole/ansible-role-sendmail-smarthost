@@ -5,7 +5,7 @@
 
  - name: update root email forwarding
    lineinfile: "dest={{ aliases_file }} state=present regexp='^root:' line='root: {{ admin_email }}' insertafter='^# root:'"
-   notify: newalises
+   notify: newaliases
 
  - name: make sendmail config files
    command: make chdir={{ mail_path }} creates={{ mail_path }}{{ ansible_hostname }}.mc
