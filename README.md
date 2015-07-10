@@ -12,6 +12,7 @@ Role Variables
 --------------
 
 smarthost:  smtp.example.com
+
 admin_email: email@example.com
 
 Dependencies
@@ -25,8 +26,13 @@ Example Playbook
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: servers
+     
+      vars:
+       smarthost: smtp.example.com
+       admin_email: me@example.com
+    
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: sendmail-smarthost }
 
 License
 -------
@@ -36,4 +42,4 @@ BSD
 Author Information
 ------------------
 
-Kade Cole - kcole@yahoo.com - https://github.com/kadecole/ansible-role-sendmail-smarthost
+Kade Cole - https://github.com/kadecole/ansible-role-sendmail-smarthost
