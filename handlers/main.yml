@@ -10,4 +10,7 @@
  - name: restart sendmail
    shell: service sendmail onerestart
    when: ansible_os_family == 'FreeBSD'
-      
+
+ - name: restart postfix
+   shell: service postfix restart
+   when: ansible_os_family == 'RedHat'
