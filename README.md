@@ -1,7 +1,7 @@
 Role Name
 =========
 
-This is an Ansible role to configure sendmail with a designated smarthost variable. Role will also configure aliases file to forward all root email with admin_email variable.
+This is an Ansible role to configure sendmail/postfix with a designated smarthost variable. Role will also configure aliases file to forward all root email with admin_email variable.
 
 Requirements
 ------------
@@ -32,7 +32,7 @@ Including an example of how to use your role (for instance, with variables passe
        admin_email: me@example.com
     
       roles:
-         - { role: sendmail-smarthost }
+         - { role: ansible-role-smarthost }
 
 License
 -------
@@ -42,4 +42,4 @@ BSD
 Author Information
 ------------------
 
-Kade Cole - https://github.com/kadecole/ansible-role-sendmail-smarthost
+Kade Cole - https://github.com/kadecole/ansible-role-smarthost
