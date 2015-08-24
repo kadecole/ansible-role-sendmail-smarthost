@@ -13,14 +13,14 @@
 
 
  - name: configure smarthost
-   replace: dest={{ mail_path }}{{ ansible_hostname }}.mc regexp="dnl define.*SMART_HOST.*"  replace="define(`SMART_HOST', `{{ smarthost }}')"
+   replace: dest={{ mail_path }}{{ ansible_hostname }}.mc regexp="dnl define.*SMART_HOST.*"  replace="define(`SMART_HOST', `{{ smarthost }}')" backup=yes
    notify: make install sendmail config files
    notify: restart sendmail
    when: ansible_os_family == 'FreeBSD'
 
    
  - name: configure postfix
-   replace: dest={{ mail_path }}main.cf regexp="#relayhost"  replace="relayhost = {{ smarthost }}"
+   lineinfile: dest={{ mail_path }}main.cf regexp="^relayhost" line="relayhost = {{ smarthost }}" backup=yes
    notify: restart postfix
    when: ansible_os_family == 'RedHat'
 
