@@ -7,21 +7,20 @@
    lineinfile: "dest={{ aliases_file }} state=present regexp='^root:' line='root: {{ admin_email }}' insertafter='^# root:'"
    notify: newaliases
 
- - name: make sendmail config files
-   command: make chdir={{ mail_path }} creates={{ mail_path }}{{ ansible_hostname }}.mc
+ - name: make initial sendmail config files
+   command: make chdir={{ mail_path }} creates={{ mail_path }}{{ inventory_hostname }}.mc
    when: ansible_os_family == 'FreeBSD'
-
 
  - name: configure smarthost
-   replace: dest={{ mail_path }}{{ ansible_hostname }}.mc regexp="dnl define.*SMART_HOST.*"  replace="define(`SMART_HOST', `{{ smarthost }}')" backup=yes
-   notify: make install sendmail config files
-   notify: restart sendmail
+   replace: dest={{ mail_path }}{{ inventory_hostname }}.mc regexp="dnl define.*SMART_HOST.*"  replace="define(`SMART_HOST', `{{ smarthost }}')" backup=yes
+   notify:
+      - make install sendmail config files
+      - restart sendmail
    when: ansible_os_family == 'FreeBSD'
 
-   
+
+
  - name: configure postfix
    lineinfile: dest={{ mail_path }}main.cf regexp="^relayhost" line="relayhost = {{ smarthost }}" backup=yes
    notify: restart postfix
    when: ansible_os_family == 'RedHat'
-
-
