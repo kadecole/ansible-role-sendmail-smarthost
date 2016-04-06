@@ -8,7 +8,7 @@
    notify: newaliases
 
  - name: make initial sendmail config files
-   command: make chdir={{ mail_path }} creates={{ mail_path }}{{ inventory_hostname }}.mc
+   shell: make chdir={{ mail_path }} creates={{ mail_path }}{{ inventory_hostname }}.mc
    when: ansible_os_family == 'FreeBSD'
 
  - name: configure smarthost
