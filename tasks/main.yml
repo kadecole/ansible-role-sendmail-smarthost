@@ -1,6 +1,6 @@
 ---
 # tasks file for sendmail-smarthost
- - name: Include OS-specific variables.
+ - name: include OS-specific variables
    include_vars: "{{ ansible_os_family }}.yml"
 
  - name: update root email forwarding
@@ -8,8 +8,12 @@
    notify: newaliases
 
  - name: make initial sendmail config files
-   shell: make chdir={{ mail_path }} creates={{ mail_path }}{{ inventory_hostname }}.mc
+   make: chdir={{ mail_path }}
    when: ansible_os_family == 'FreeBSD'
+
+ - name: wait for files to be created
+   wait_for: path={{ mail_path }}{{ inventory_hostname }}.mc
+   when: ansible_os_family == 'FreeBSD' 
 
  - name: configure smarthost
    replace: dest={{ mail_path }}{{ inventory_hostname }}.mc regexp="dnl define.*SMART_HOST.*"  replace="define(`SMART_HOST', `{{ smarthost }}')" backup=yes
@@ -17,8 +21,6 @@
       - make install sendmail config files
       - restart sendmail
    when: ansible_os_family == 'FreeBSD'
-
-
 
  - name: configure postfix
    lineinfile: dest={{ mail_path }}main.cf regexp="^relayhost" line="relayhost = {{ smarthost }}" backup=yes
