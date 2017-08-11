@@ -5,5 +5,14 @@
     smarthost:  smtp.example.com
     admin_email: email@example.com
 
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=yes cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+
+    - name: Install postfix
+      package: name=postfix state=latest
+      when: ansible_os_family == 'Debian' || ansible_os_family == 'RedHat'
+
   roles:
     - role_under_test
