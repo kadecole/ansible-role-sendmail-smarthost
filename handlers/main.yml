@@ -12,5 +12,5 @@
    when: ansible_os_family == 'FreeBSD'
 
  - name: restart postfix
-   shell: service postfix restart
+   service: name=postfix state=restarted
    when: ansible_os_family == 'RedHat'
