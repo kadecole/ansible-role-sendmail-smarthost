@@ -4,11 +4,11 @@
    shell: newaliases
 
  - name: make install sendmail config files
-   command: make install chdir={{ mail_path }}
+   make: target=install chdir={{ mail_path }}
    when: ansible_os_family == 'FreeBSD'
 
  - name: restart sendmail
-   shell: service sendmail onerestart
+   make: target=restart-mta chdir={{ mail_path }}
    when: ansible_os_family == 'FreeBSD'
 
  - name: restart postfix
