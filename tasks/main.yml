@@ -13,6 +13,7 @@
 
  - name: wait for files to be created
    wait_for: path={{ mail_path }}{{ inventory_hostname }}.mc
+   when: ansible_os_family == 'FreeBSD' 
 
  - name: configure smarthost
    replace: dest={{ mail_path }}{{ inventory_hostname }}.mc regexp="dnl define.*SMART_HOST.*"  replace="define(`SMART_HOST', `{{ smarthost }}')" backup=yes
