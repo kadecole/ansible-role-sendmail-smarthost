@@ -1,0 +1,9 @@
+---
+- hosts: all
+
+  vars:
+    smarthost:  smtp.example.com
+    admin_email: email@example.com
+
+  roles:
+    - role_under_test
