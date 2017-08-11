@@ -22,7 +22,7 @@ script:
   - ${PWD}/tests/test.sh
 
   # Check postfix status.
-  - 'docker exec -u postgres ${container_id} service postfix status'
+  - 'docker exec ${container_id} service postfix status'
 
 after_failure:
   # Check what happened on systemd systems.
