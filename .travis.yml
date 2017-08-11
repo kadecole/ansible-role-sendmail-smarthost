@@ -4,7 +4,6 @@ services: docker
 env:
   - distro: centos7
   - distro: centos6
-  - distro: fedora24
 
 script:
   # Configure test script so we can run extra tests after playbook is run.
