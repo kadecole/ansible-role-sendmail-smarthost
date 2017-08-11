@@ -26,7 +26,7 @@ script:
 
 after_failure:
   # Check what happened on systemd systems.
-  - 'docker exec --tty ${container_id} env TERM=xterm systemctl -l status postgresql.service'
+  - 'docker exec --tty ${container_id} env TERM=xterm systemctl -l status postfix.service'
   - 'docker exec --tty ${container_id} env TERM=xterm journalctl -xe --no-pager'
 
 notifications:
