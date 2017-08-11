@@ -10,10 +10,10 @@ galaxy_info:
     - name: FreeBSD
       versions:
         - all
-    - name: Centos
+    - name: EL
       versions:
-        - centos6
-        - centos7
+        - 6
+        - 7
   galaxy_tags:
     - FreeBSD
     - mail
