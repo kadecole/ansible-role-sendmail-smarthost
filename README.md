@@ -1,4 +1,4 @@
-Role Name
+Ansible Role: Smarthost
 =========
 
 [![Build Status](https://travis-ci.org/kadecole/ansible-role-smarthost.svg?branch=master)](https://travis-ci.org/kadecole/ansible-role-smarthost)
